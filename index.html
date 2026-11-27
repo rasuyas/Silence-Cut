@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Silence Cut</title>
+<style>
+  body { background:#232323; color:#ddd; font:12px sans-serif; margin:10px; }
+  label { display:block; margin-top:8px; }
+  input[type=text], input[type=number] { width:100%; box-sizing:border-box; background:#1a1a1a; color:#eee; border:1px solid #444; padding:4px; }
+  .row { display:flex; gap:8px; } .row > div { flex:1; }
+  button { margin-top:10px; padding:8px; width:100%; background:#3a6df0; color:#fff; border:0; cursor:pointer; font-size:13px; }
+  button.sec { background:#444; }
+  pre { background:#1a1a1a; border:1px solid #333; padding:6px; height:130px; overflow:auto; white-space:pre-wrap; }
+</style>
+</head>
+<body>
+  <label>ffmpeg path (leave "ffmpeg" if it is in PATH)
+    <input type="text" id="ffmpeg" value="ffmpeg">
+  </label>
+  <div class="row">
+    <div><label>Silence threshold (dB)<input type="number" id="noise" value="-28"></label></div>
+    <div><label>Min silence (sec)<input type="number" id="minSil" value="0.2" step="0.05"></label></div>
+  </div>
+  <div class="row">
+    <div><label>Big gap from (sec)<input type="number" id="bigGap" value="1" step="0.1"></label></div>
+    <div><label>Padding each side (sec)<input type="number" id="pad" value="0.04" step="0.01"></label></div>
+  </div>
+  <label><input type="checkbox" id="cutVideo" checked> Also cut video tracks</label>
+  <button class="sec" id="btnPreview">Preview (no edits)</button>
+  <button id="btnCut">Cut Silence</button>
+  <pre id="log"></pre>
+  <script src="js/silence-logic.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
